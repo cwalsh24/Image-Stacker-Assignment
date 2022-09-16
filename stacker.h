@@ -16,19 +16,22 @@
 
 class Stacker{
  private: 
-  string magic_number = "P3";
+  std::string magic_number;
   int width;
   int height;
   int max_color;
-  vector pixels;
+  vector<pixel> pixels;
   
   struct pixel{
     int red;
     int green;
     int blue;
-  }
+  };
+  
  public:
-  //This will be added to
+  Stacker(); //default constructor
+  void fileLoader();
+  // double average
   
   
 };
