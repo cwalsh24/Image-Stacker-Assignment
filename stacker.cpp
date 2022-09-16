@@ -15,10 +15,29 @@
 
 using namespace std;
 
-Stacker(){
+Stacker::Stacker(){
   magic_number; 
   width = 0;
-  height = 0;
+  height = 0;//height before width
   max_color = 255;
+  p(0, 0, 0); 
+  pixels; 
+}
+
+void Stacker::fileLoader(){
+  int temporary = 0;
+  ifstream in;
+  string fileName;
+  cout << "What file do you want to open? ";
+  cin >> fileName; //type the path of the file ppms/.ppm 
+  in.open(fileName.c_str());
+
+  int count = 0;
+  in >> temporary;
+
+  while(in){
+
+  }
+
 }
 
