@@ -19,17 +19,20 @@ Stacker::Stacker(){
   magic_number; 
   width = 0;
   height = 0;//height before width
-  max_color = 255;
-  p(0, 0, 0); 
-  pixels; 
+  max_color = 255; 
+  //pixels; 
 }
 
 void Stacker::fileLoader(){
   int temporary = 0;
   ifstream in;
   string fileName;
-  cout << "What file do you want to open? ";
-  cin >> fileName; //type the path of the file ppms/.ppm 
+  string folderName; 
+  cout << "Please enter the image you wish to stack: "; 
+  cin >> folderName; 
+
+  
+  fileName = folderName + "/" + folderName + "_0" + endNumber + ".ppm"; //this will get the file name, but we need to figure out how to get the numbers 
   in.open(fileName.c_str());
 
   int count = 0;
