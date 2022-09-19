@@ -57,15 +57,15 @@ void Stacker:::Total(){
   pTotal.red = 0;
   pTotal.green = 0; 
   pTotal.blue = 0; 
-  vecTotal.push_back(pTotal); **/ //this works but it offsets everything by one and it also cant be here.  
+  **/ //this works with the aformentioned code, but we need to put it in the constructor or something. Also, do we need pTotal when we have p?   
   
   //The for loop below adds up and stores the vector pixel values into
   //another vector for averaging 
   for(unsigned int i = 0; i < vec2.size(); i++){
+    vecTotal.push_back(pTotal);
     vecTotal[i].red += vec2[i].red;
     vecTotal[i].green += vec2[i].green;
     vecTotal[i].blue += vec2[i].blue;
-    vecTotal.push_back(pTotal);
   }
 }
 
