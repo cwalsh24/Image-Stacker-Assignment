@@ -20,7 +20,8 @@ class Stacker{
   int width;
   int height;
   int max_color;
-  vector<pixel> pixels;
+  std::vector<pixel> pixels;
+  //std::vector<pixel> vecTotal; This is probably how we are going to have to keep track of all the vectors 
   
   struct pixel{
     int red;
@@ -31,7 +32,8 @@ class Stacker{
  public:
   Stacker(); //default constructor
   void fileLoader();
-  // double average
+  // double average this is going to divide everything in the vecTotal vector by the number the user enters
+  void total(); //this is where the vecTotal vector is filled 
   
   
 };
