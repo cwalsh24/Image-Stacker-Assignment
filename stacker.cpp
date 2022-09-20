@@ -19,8 +19,7 @@ Stacker::Stacker(){
   magic_number = ""; //since this is declared in the header it may not need to be here  
   height = 0;
   width = 0; 
-  max_color = 255; 
-  // pixel p; This causes an unused variable error, can probably just be deleted   
+  max_color = 255;    
 }
 
 void Stacker::fileLoader(string folderName, int numberOfImages){
@@ -63,12 +62,11 @@ void Stacker::fileLoader(string folderName, int numberOfImages){
 }
 
 void Stacker::total(){
-  /**  pixel pTotal; //probably another variable to go into private
-  pTotal.red = 0;
-  pTotal.green = 0; 
-  pTotal.blue = 0; 
-  vecTotal.push_back(pTotal);
-  **/ //this works with the aforementioned code, but we need to put it in the constructor or something (this might make us lose points). Also, do we need pTotal when we have p?   
+  //if the vecTotal has nothing in it, it must be initialized or
+  //the program will return NULL. 
+  if(vecTotal.size() == 0){
+    totalInit(); 
+  }
   
   //The for loop below adds up and stores the vector pixel values into
   //another vector for averaging 
@@ -79,7 +77,8 @@ void Stacker::total(){
   }
 }
 
-void Stacker::average(int numberOfImages){ //this is currently set to overwrite the total vector, it works we might want to put in an average vector 
+void Stacker::average(int numberOfImages){
+  //This averages all of the entries in the total vector. 
   for(unsigned int i = 0; i <= pixels.size(); i++){
     vecTotal[i].red = vecTotal[i].red/numberOfImages;
     vecTotal[i].green = vecTotal[i].green/numberOfImages;
