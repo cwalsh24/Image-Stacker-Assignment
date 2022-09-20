@@ -20,10 +20,18 @@ int main() {
   Stacker s;
   string folderName;
   int numberOfImages;
+  s.totalInit(); //might want to make the total function call this one.
+
+  //The program asks the user for the name of the image and the number of images. 
   cout << "Please enter the image you wish to stack: ";
   cin >> folderName;
   cout << "Please enter the number of images: ";
   cin >> numberOfImages;
+  
+  //reads in data from all our files and totals it into one vector
   s.fileLoader(folderName, numberOfImages);
+  //averages the values in the total vector
+  s.average(numberOfImages);
+  
 
 }
