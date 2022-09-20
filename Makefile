@@ -14,11 +14,11 @@ default: stacker
 
 # compilation instructions for components of executable
 stacker: stacker.o main.o
-	$(CC) $(TARGET) Stacker.o main.o
+	$(CC) $(TARGET) stacker.o main.o
 
 # compilation instructions for components of object files
 Stacker.o: stacker.cpp stacker.h
-	$(CC) $(CFLAGS) Stacker.cpp
+	$(CC) $(CFLAGS) stacker.cpp
 
 main.o: main.cpp stacker.h
 	$(CC) $(CFLAGS) main.cpp
