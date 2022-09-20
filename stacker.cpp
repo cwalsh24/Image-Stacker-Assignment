@@ -49,33 +49,31 @@ void Stacker::fileLoader(string folderName, int numberOfImages, pixel p){
     in >> p2.blue;
     vec2.push_back(p2);
 
-  }  
+  }
+  // my guess is that we are going to recursively call the fileRead method and also send the current vector we just read out to the total method
 }
 
-void Stacker:::Total(){
+void Stacker:::total(){
   /**  pixel pTotal; //probably another variable to go into private
   pTotal.red = 0;
   pTotal.green = 0; 
   pTotal.blue = 0; 
+  vecTotal.push_back(pTotal);
   **/ //this works with the aformentioned code, but we need to put it in the constructor or something. Also, do we need pTotal when we have p?   
   
   //The for loop below adds up and stores the vector pixel values into
   //another vector for averaging 
   for(unsigned int i = 0; i < vec2.size(); i++){
-    vecTotal.push_back(pTotal);
     vecTotal[i].red += vec2[i].red;
     vecTotal[i].green += vec2[i].green;
     vecTotal[i].blue += vec2[i].blue;
   }
 }
 
-void Stacker::Average(vector<pixel> &vec){ //we are probably going to end up with a vector for each file read 
-  double rAverage = 0;
-  double gAverage = 0;
-  double bAverage = 0;
-  for(int i = 0; i < vec.size(); i++){
-    rAverage = vec[i].r + rAverage; //this won't work for what we are trying to do 
-    gAverage = vec[i].g + gAverage;
-    bAverage = vec[i].b + bAverage;
+void Stacker::average(int numberOfImages){ //this is currently set to overwrite the total vector, it works we might want to put in an average vector 
+  for(unsigned int i = 0; i <= vec2.size(); i++){
+    vecTotal[i].red = vecTotal[i].red/numberOfImages;
+    vecTotal[i].green = vecTotal[i].green/numberOfImages;
+    vecTotal[i].blue = vecTotal[i].blue/numberOfImages;
   }
 }
