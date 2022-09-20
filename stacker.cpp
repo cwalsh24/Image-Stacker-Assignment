@@ -59,7 +59,7 @@ void Stacker:::total(){
   pTotal.green = 0; 
   pTotal.blue = 0; 
   vecTotal.push_back(pTotal);
-  **/ //this works with the aformentioned code, but we need to put it in the constructor or something. Also, do we need pTotal when we have p?   
+  **/ //this works with the aforementioned code, but we need to put it in the constructor or something (this might make us lose points). Also, do we need pTotal when we have p?   
   
   //The for loop below adds up and stores the vector pixel values into
   //another vector for averaging 
