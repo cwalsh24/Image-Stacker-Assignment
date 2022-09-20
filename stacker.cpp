@@ -23,7 +23,7 @@ Stacker::Stacker(){
   // pixel p; This causes an unused variable error, can probably just be deleted   
 }
 
-void Stacker::fileLoader(string folderName, int numberOfImages, pixel p){  
+void Stacker::fileLoader(string folderName, int numberOfImages){  
   //int temporary = 0; may not be needed
   ifstream in;
   string fileName;
