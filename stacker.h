@@ -33,9 +33,8 @@ class Stacker{
  public:
   Stacker(); //default constructor
   void fileLoader(std::string folderName, int numberOfImages);
-  // double average this is going to divide everything in the vecTotal vector by the number the user enters
   void total(); //this is where the vecTotal vector is filled 
-  
+  void average(int numberOfImages);
   
 };
 
