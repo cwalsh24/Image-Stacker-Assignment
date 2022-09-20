@@ -7,16 +7,20 @@
  * stuff
  */
 
+#include <iostream> //remove the ones that aren't used later
+#include <fstream>
+#include <vector>
+#include <string>
 #include "stacker.h"  
 
 using namespace std;
 
 Stacker::Stacker(){
-  magic_number; 
-  width = 0;
-  height = 0;//height before width
+  magic_number = ""; //since this is declared in the header it may not need to be here  
+  height = 0;
+  width = 0; 
   max_color = 255; 
-  pixel p;   
+  // pixel p; This causes an unused variable error, can probably just be deleted   
 }
 
 void Stacker::fileLoader(string folderName, int numberOfImages, pixel p){  
@@ -27,12 +31,12 @@ void Stacker::fileLoader(string folderName, int numberOfImages, pixel p){
   //Something like these will get the correct file name depending on the number of files the user wants to get.
   //We might want to put in an else statement to end the method if the number is less than one or more than 99 
   if(numberOfImages < 10){ 
-    fileName = folderName + "/" + folderName + "_00" + numberOfImages + ".ppm";
+    fileName = folderName + "/" + folderName + "_00" + to_string(numberOfImages) + ".ppm";
     cout << fileName; 
   }
   
   if(10 <= numberOfImages){
-    fileName = folderName + "/" + folderName + "_00" + numberOfImages + ".ppm";
+    fileName = folderName + "/" + folderName + "_0" + to_string(numberOfImages) + ".ppm";
     cout << fileName; 
   } //when these run we might want to do a numberOfimages-- and then call the method again at the end
   //or we could do like numberOfImages-(numberOfimages - 1) and count up. The example went from 1 to 10  
@@ -44,16 +48,19 @@ void Stacker::fileLoader(string folderName, int numberOfImages, pixel p){
 
   while(in){ //priming read? 
     //this puts values into the vector of structs.  
-    in >> p2.red;
-    in >> p2.green;
-    in >> p2.blue;
-    vec2.push_back(p2);
+    in >> p.red;
+    in >> p.green;
+    in >> p.blue;
+    pixels.push_back(p);
 
   }
   // my guess is that we are going to recursively call the fileRead method and also send the current vector we just read out to the total method
+
+  //closes the fileStream
+  in.close(); 
 }
 
-void Stacker:::total(){
+void Stacker::total(){
   /**  pixel pTotal; //probably another variable to go into private
   pTotal.red = 0;
   pTotal.green = 0; 
@@ -63,15 +70,15 @@ void Stacker:::total(){
   
   //The for loop below adds up and stores the vector pixel values into
   //another vector for averaging 
-  for(unsigned int i = 0; i < vec2.size(); i++){
-    vecTotal[i].red += vec2[i].red;
-    vecTotal[i].green += vec2[i].green;
-    vecTotal[i].blue += vec2[i].blue;
+  for(unsigned int i = 0; i < pixels.size(); i++){
+    vecTotal[i].red += pixels[i].red;
+    vecTotal[i].green += pixels[i].green;
+    vecTotal[i].blue += pixels[i].blue;
   }
 }
 
 void Stacker::average(int numberOfImages){ //this is currently set to overwrite the total vector, it works we might want to put in an average vector 
-  for(unsigned int i = 0; i <= vec2.size(); i++){
+  for(unsigned int i = 0; i <= pixels.size(); i++){
     vecTotal[i].red = vecTotal[i].red/numberOfImages;
     vecTotal[i].green = vecTotal[i].green/numberOfImages;
     vecTotal[i].blue = vecTotal[i].blue/numberOfImages;
