@@ -35,6 +35,7 @@ class Stacker{
   void fileLoader(std::string folderName, int numberOfImages);
   void total(); //this is where the vecTotal vector is filled 
   void average(int numberOfImages);
+  void totalInit(); //this initializes the vecTotal vector
   
 };
 
