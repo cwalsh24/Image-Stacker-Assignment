@@ -16,80 +16,96 @@
 using namespace std;
 
 Stacker::Stacker(){
-  magic_number = ""; //since this is declared in the header it may not need to be here  
+  magic_number = "";   
   height = 0;
   width = 0; 
-  max_color = 255;    
+  max_color = 0; 
 }
 
 void Stacker::fileLoader(string folderName, int numberOfImages){
   ifstream in;
   string fileName;
-  //This loop is going to read through all the files
-  while(numberOfImages > 0){
+  int tempR, tempG, tempB;
+  vector<pixel> pVec;
   
-    //Something like these will get the correct file name depending on the number of files the user wants to get.
-    //We might want to put in an else statement to end the method if the number is less than one or more than 99 
-    if(numberOfImages < 10){ 
-      fileName = folderName + "/" + folderName + "_00" + to_string(numberOfImages) + ".ppm";
-      cout << fileName << endl; 
-    }
-  
-    if(10 <= numberOfImages){
-      fileName = folderName + "/" + folderName + "_0" + to_string(numberOfImages) + ".ppm";
-      cout << fileName << endl; 
-    } //when these run we might want to do a numberOfimages-- and then call the method again at the end
-    //or we could do like numberOfImages-(numberOfimages - 1) and count up. The example went from 1 to 10  
-    
-    in.open(fileName.c_str());
- 
-    //this line reads in the values for these variables from the file. 
-    in >> magic_number >> height >> width >> max_color;  //**note the magic_number might want to be a priming read
-
-    while(in){ //priming read? 
-      //this puts values into the vector of structs.  
-      in >> p.red;
-      in >> p.green;
-      in >> p.blue;
-      pixels.push_back(p);
-      
-    }
-    total(); 
-    numberOfImages--;
+  //These two if statements set the correct file locations equal to the fileName string
+  //and print said file names for the user to see. 
+  if(numberOfImages < 10){ 
+    fileName = "ppms/" + folderName + "/" + folderName + "_00" + to_string(numberOfImages) + ".ppm";
+    cout << fileName << endl;
   }
-  //closes the file stream
-  in.close(); 
+  
+  if(10 <= numberOfImages){
+    fileName = "ppms/" + folderName + "/" + folderName + "_0" + to_string(numberOfImages) + ".ppm";
+    cout << fileName << endl;
+  }   
+
+  in.open(fileName.c_str());
+ 
+  //this line reads in the values for these variables from the file. 
+  in >> magic_number >> height >> width >> max_color;
+  //This is a priming read of the file
+  in >> tempR >> tempG >> tempB;
+  
+  while(in){ 
+    //this puts values into the vector of structs.
+    p.red = tempR;
+    p.green = tempG;
+    p.blue = tempB;
+    pVec.push_back(p);
+    in >> tempR;
+    in >> tempG;
+    in >> tempB;
+  }
+  in.close();
+  //This is supposed to allow the reader to read in the next file
+  total(pVec);
+  pVec.clear();
+  numberOfImages--;
+  //calls the method again to read in the next file
+  while(numberOfImages > 0){
+    fileLoader(folderName, numberOfImages);
+  }
 }
 
-void Stacker::total(){
+void Stacker::total(vector<pixel> pVec){
   //if the vecTotal has nothing in it, it must be initialized or
   //the program will return NULL. 
-  if(vecTotal.size() == 0){
-    totalInit(); 
+  if(pixels.size() == 0){
+    totalInit(pVec.size()); 
   }
   
   //The for loop below adds up and stores the vector pixel values into
   //another vector for averaging 
   for(unsigned int i = 0; i < pixels.size(); i++){
-    vecTotal[i].red += pixels[i].red;
-    vecTotal[i].green += pixels[i].green;
-    vecTotal[i].blue += pixels[i].blue;
+    pixels[i].red += pVec[i].red;
+    pixels[i].green += pVec[i].green;
+    pixels[i].blue += pVec[i].blue;
   }
 }
 
 void Stacker::average(int numberOfImages){
   //This averages all of the entries in the total vector. 
   for(unsigned int i = 0; i <= pixels.size(); i++){
-    vecTotal[i].red = vecTotal[i].red/numberOfImages;
-    vecTotal[i].green = vecTotal[i].green/numberOfImages;
-    vecTotal[i].blue = vecTotal[i].blue/numberOfImages;
+    pixels[i].red = pixels[i].red/numberOfImages;
+    pixels[i].green = pixels[i].green/numberOfImages;
+    pixels[i].blue = pixels[i].blue/numberOfImages;
   }
 }
 
-void Stacker::totalInit(){
+void Stacker::totalInit(int vecSize){ //this initilizes the pixels vector, we need the size from the fileRead vector so it has the correct number of entries
   pixel pTotal;
-  pTotal.red = 0;
-  pTotal.green = 0;
-  pTotal.blue = 0;
-  vecTotal.push_back(pTotal);
+  for(int i = 0; i < vecSize; i++){
+    pTotal.red = 0;
+    pTotal.green = 0;
+    pTotal.blue = 0;
+    pixels.push_back(pTotal);
+  }
+}
+
+void Stacker::fileWrite(){
+  ofstream out;
+  out.open("test.ppm");
+  out << magic_number << '\n' << width << ' ' << height << '\n' << max_color << endl;
+  out.close();
 }

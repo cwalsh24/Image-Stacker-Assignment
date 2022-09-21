@@ -30,9 +30,9 @@ int main() {
   //reads in data from all our files and totals it into one vector
   s.fileLoader(folderName, numberOfImages);
   //averages the values in the total vector
-  s.average(numberOfImages);
+  // s.average(numberOfImages);
 
-  //fileWriter(); 
+  // s.fileWrite(); 
   
 
 }

@@ -26,16 +26,15 @@ class Stacker{
     int blue;
   };  
   std::vector<pixel> pixels;
-  pixel p; //not sure if we want this here 
-  //This is to keep track of the totals of all the pixels in the ppm files
-  std::vector<pixel> vecTotal;
+  pixel p; 
   
  public:
   Stacker(); //default constructor
   void fileLoader(std::string folderName, int numberOfImages);
-  void total(); //this is where the vecTotal vector is filled 
+  void total(std::vector<pixel> pVec); //this is where the vecTotal vector is filled 
   void average(int numberOfImages);
-  void totalInit(); //this initializes the vecTotal vector
+  void totalInit(int vecSize); //this initializes the pixels vector
+  void fileWrite(); //this should output all the information we have collected into a ppm file
   
 };
 
