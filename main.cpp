@@ -28,7 +28,11 @@ int main() {
   cin >> numberOfImages;
   
   //reads in data from all our files and totals it into one vector
-  s.fileLoader(folderName, numberOfImages);
+  // s.fileLoader(folderName, numberOfImages);
+  while(numberOfImages > 0){
+    s.fileLoader(folderName, numberOfImages);
+    numberOfImages--;
+  }
   //averages the values in the total vector
   // s.average(numberOfImages);
 

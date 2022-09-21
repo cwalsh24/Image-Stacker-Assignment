@@ -60,12 +60,19 @@ void Stacker::fileLoader(string folderName, int numberOfImages){
   in.close();
   //This is supposed to allow the reader to read in the next file
   total(pVec);
+  cout << "pixels size: " << pVec.size() << endl;
+
+  cout << pVec[0].red << endl;
+  cout << pVec[1].red << endl;
+  cout << pVec[2].red << endl;
+  cout << pVec[3].red << endl;
+  
   pVec.clear();
-  numberOfImages--;
+  //numberOfImages--; //this all causes an infinite loop
   //calls the method again to read in the next file
-  while(numberOfImages > 0){
-    fileLoader(folderName, numberOfImages);
-  }
+  //while(numberOfImages > 0){
+  //  fileLoader(folderName, numberOfImages);
+  //}
 }
 
 void Stacker::total(vector<pixel> pVec){
