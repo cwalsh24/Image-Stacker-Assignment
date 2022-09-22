@@ -98,6 +98,11 @@ void Stacker::average(int numberOfImages){
     pixels[i].green = pixels[i].green/numberOfImages;
     pixels[i].blue = pixels[i].blue/numberOfImages;
   }
+  //DEBUG JUNK
+  cout<<pixels[0].red << endl;
+  cout<<pixels[1].red << endl;
+  cout<<pixels[2].red << endl;
+  cout<<pixels[3].red << endl;
 }
 
 void Stacker::totalInit(int vecSize){ //this initilizes the pixels vector, we need the size from the fileRead vector so it has the correct number of entries
@@ -114,5 +119,6 @@ void Stacker::fileWrite(){
   ofstream out;
   out.open("test.ppm");
   out << magic_number << '\n' << width << ' ' << height << '\n' << max_color << endl;
+  //for(int i = 0; i < width; i++){ we need to get it to print until the width ends and then start a new line
   out.close();
 }

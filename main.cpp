@@ -26,15 +26,17 @@ int main() {
   cin >> folderName;
   cout << "Please enter the number of images: ";
   cin >> numberOfImages;
+  int count = numberOfImages; //remove later when the while loop issue is fixed 
   
   //reads in data from all our files and totals it into one vector
   // s.fileLoader(folderName, numberOfImages);
-  while(numberOfImages > 0){
+  while(numberOfImages > 0){ //this needs to be moved into the method, its causing the number of ints to be zero
     s.fileLoader(folderName, numberOfImages);
     numberOfImages--;
   }
   //averages the values in the total vector
-  // s.average(numberOfImages);
+  cout << "The Average of the first 4 reds is" << endl; 
+  s.average(count);
 
   // s.fileWrite(); 
   
