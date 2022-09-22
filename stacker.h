@@ -34,7 +34,7 @@ class Stacker{
   void total(std::vector<pixel> pVec); //this is where the vecTotal vector is filled 
   void average(int numberOfImages);
   void totalInit(int vecSize); //this initializes the pixels vector
-  void fileWrite(); //this should output all the information we have collected into a ppm file
+  void fileWrite(std::string folderName); //this should output all the information we have collected into a ppm file
   
 };
 

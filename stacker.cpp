@@ -67,7 +67,7 @@ void Stacker::fileLoader(string folderName, int numberOfImages){
   cout << pVec[2].red << endl;
   cout << pVec[3].red << endl;
   
-  pVec.clear();
+  // pVec.clear(); we dont need this anymore, it doesn't seem to do anything
   //numberOfImages--; //this all causes an infinite loop
   //calls the method again to read in the next file
   //while(numberOfImages > 0){
@@ -76,7 +76,7 @@ void Stacker::fileLoader(string folderName, int numberOfImages){
 }
 
 void Stacker::total(vector<pixel> pVec){
-  //if the vecTotal has nothing in it, it must be initialized or
+  //when pixels has nothing in it, it must be initialized or
   //the program will return NULL. 
   if(pixels.size() == 0){
     totalInit(pVec.size()); 
@@ -92,13 +92,13 @@ void Stacker::total(vector<pixel> pVec){
 }
 
 void Stacker::average(int numberOfImages){
-  //This averages all of the entries in the total vector. 
+  //This averages all of the entries in the pixels vector. 
   for(unsigned int i = 0; i <= pixels.size(); i++){
     pixels[i].red = pixels[i].red/numberOfImages;
     pixels[i].green = pixels[i].green/numberOfImages;
     pixels[i].blue = pixels[i].blue/numberOfImages;
   }
-  //DEBUG JUNK
+  //DEBUG JUNK DELETE WHEN DONE 
   cout<<pixels[0].red << endl;
   cout<<pixels[1].red << endl;
   cout<<pixels[2].red << endl;
@@ -115,10 +115,15 @@ void Stacker::totalInit(int vecSize){ //this initilizes the pixels vector, we ne
   }
 }
 
-void Stacker::fileWrite(){
+void Stacker::fileWrite(string folderName){
+  string fileName = folderName + ".ppm"; 
   ofstream out;
-  out.open("test.ppm");
+  out.open(fileName); //"test.ppm" 
   out << magic_number << '\n' << width << ' ' << height << '\n' << max_color << endl;
-  //for(int i = 0; i < width; i++){ we need to get it to print until the width ends and then start a new line
+  //while(out)?
+  /**for(int i = 0; i < width; i++){ //we need to get it to print until the width ends and then start a new line
+    out << pixels[i].red << ' ' << pixels[i].green << ' ' << pixels[i].blue << ' ';
+  **/
   out.close();
+  cout << "Output written to: " << fileName << endl; 
 }
