@@ -35,12 +35,12 @@ void Stacker::fileLoader(string folderName, int numberOfImages){
   //and print said file names for the user to see. 
   if(numberOfImages < 10){ 
     fileName = "ppms/" + folderName + "/" + folderName + "_00" + to_string(numberOfImages) + ".ppm";
-    cout << fileName << endl;
+    cout << "\t" + fileName << endl;
   }
   
   if(10 <= numberOfImages){
     fileName = "ppms/" + folderName + "/" + folderName + "_0" + to_string(numberOfImages) + ".ppm";
-    cout << fileName << endl;
+    cout << "\t" + fileName << endl;
   }   
   //This line opens up the file stream. 
   in.open(fileName.c_str());
@@ -128,11 +128,16 @@ void Stacker::fileWrite(string folderName){
   //This opens our file stream
   out.open(fileName.c_str()); 
   out << magic_number << '\n' << width << ' ' << height << '\n' << max_color << endl;
-  /**  while(out){
-    for(int i = 0; i < width; i++){ //we need to get it to print until the width ends and then start a new line
+  //while(out){
+  /** for(int i = 0; i < height*width; i++){
+    for(int j = 0; j < height; j++){ //we need to get it to print until the width ends and then start a new line
       out << pixels[i].red << ' ' << pixels[i].green << ' ' << pixels[i].blue << ' ';
     }
+    out << endl; 
     }**/
+  for(int i = 0; i < pixels.size(); i++){
+    out << pixels[i].red << ' ' << pixels[i].green << ' ' << pixels[i].blue << ' ';
+  }
   out.close();
   cout << "Output written to: " << fileName << endl; 
 }
