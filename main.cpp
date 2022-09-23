@@ -7,10 +7,7 @@
  * This program receives input for .ppm files to be opened and averaged to clean up an image.
  */
 
-#include <iostream> //remove the ones that aren't used later
-#include <fstream>
-#include <vector>
-#include <string>
+#include <iostream>
 
 #include "stacker.h"
 
@@ -21,7 +18,7 @@ int main() {
   string folderName;
   int numberOfImages;
 
-  //The code asks the user for the name of the image and the number of images. 
+  //This code asks the user for the name of the image and the number of images. 
   cout << "Please enter the image you wish to stack: ";
   cin >> folderName;
   cout << "Please enter the number of images: ";
@@ -39,7 +36,6 @@ int main() {
   cout << endl << "Stacking succeeded." << endl; 
   
   //This calls the average method and averages the values in the pixel vector. 
-  cout << "The Average of the first 4 reds is" << endl; //remove this later DEBUG STUFF
   s.average(numberOfImages);
 
   //This calls the file writer method to create the new image. 
