@@ -2,18 +2,25 @@
  * @file stacker.h
  * @author Connor Walsh
  * @date 2022-09-14
- * @brief This is the stacker header file 
+ * @brief this is the stacker header file 
  * 
- * It has the stacker class 
+ * This file contains the definition of the stacker class.
  */
+
 #ifndef STACKER_H
 #define STACKER_H
 
-#include <iostream> //remove the ones that aren't used later, if they need to be here remove from other files since it will import them in
-#include <fstream>
 #include <vector>
 #include <string>
 
+
+/**
+ * Utility for averaging the values of all pixels in a series of the same image to produce a clear picture.
+ *
+ * @class Stacker{ stacker.h "Image-Stacker-Assignment/stacker.h"
+ * @brief stacks images
+ *
+ */
 class Stacker{
  private: 
   std::string magic_number;
@@ -29,9 +36,41 @@ class Stacker{
   pixel p; 
   
  public:
-  Stacker(); //default constructor
+
+/**
+ * default constructor intializes private data members
+ *
+ * @pre 
+ * @post magic_number = "", width = 0, height = 0, max_color = 0
+ * 
+ */
+  Stacker();
+  
+
+/**
+ * creates a vector to hold the data loaded from a .ppm file and calls the total() method 
+ *
+ * @param std::string folderName the name of the folder entered by the user in main()
+ * @param int numberOfImages the number of images entered by the user
+ * @pre folderName and numberOfImages must be properly initialized
+ * @return void 
+ * @post 
+ * 
+ */
   void fileLoader(std::string folderName, int numberOfImages);
+
+
+/**
+ * sums all pixel values in their respective index for each image indicated by the user
+ *
+ * @param std::vector<pixel> pVec 
+ * @pre 
+ * @return void 
+ * @post 
+ * 
+ */
   void total(std::vector<pixel> pVec); //this is where the vecTotal vector is filled 
+
   void average(int numberOfImages);
   void totalInit(int vecSize); //this initializes the pixels vector
   void fileWrite(std::string folderName); //this should output all the information we have collected into a ppm file
