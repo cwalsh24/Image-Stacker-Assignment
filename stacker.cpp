@@ -1,16 +1,14 @@
 /**
  * @file stacker.cpp
- * @author Connor Walsh
- * @date 2022-09-14
- * @brief This is the stacker source code
+ * @author Code4Days (Connor Walsh, Isaac Copeland)
+ * @date 2022-09-23
+ * @brief this is the stacker source code
  * 
- * stuff
+ * This file contains the implementation for the stacker class.
  */
 
-#include <iostream> //remove the ones that aren't used later
+#include <iostream> 
 #include <fstream>
-#include <vector>
-#include <string>
 #include "stacker.h"  
 
 using namespace std;
@@ -49,7 +47,7 @@ void Stacker::fileLoader(string folderName, int numberOfImages){
   in >> magic_number >> height >> width >> max_color;
   
   //This is a priming read of the file. Without doing this, the read skips over
-  //the first 3 color values, 
+  //the first 3 color values. 
   in >> tempR >> tempG >> tempB;
   
   //This loop reads in the data while in the file. 
@@ -63,19 +61,13 @@ void Stacker::fileLoader(string folderName, int numberOfImages){
     in >> tempG;
     in >> tempB;
   }
+
   //This line closes the file stream. 
   in.close();
   
   //This calls the total method so we can add up the numbers stored in each file
   //for averaging later on. 
   total(pVec);
-  
-  cout << "pixels size: " << pVec.size() << endl;
-  cout << pVec[0].red << endl; //DEBUG STUFF DELETE WHEN DONE 
-  cout << pVec[1].red << endl;
-  cout << pVec[2].red << endl;
-  cout << pVec[3].red << endl;
-
 }
 
 void Stacker::total(vector<pixel> pVec){
@@ -98,20 +90,14 @@ void Stacker::average(int numberOfImages){
   //This averages all of the entries in the pixels vector. The totals of
   //the numbers read in from the ppm file are divided by the number of ppm
   //files that were read.
-  // pixels.shrink_to_fit(); 
   for(unsigned int i = 0; i <= pixels.size(); i++){
     pixels[i].red = pixels[i].red/numberOfImages;
     pixels[i].green = pixels[i].green/numberOfImages;
     pixels[i].blue = pixels[i].blue/numberOfImages;
   }
-  //DEBUG JUNK DELETE WHEN DONE 
-  cout<<pixels[0].red << endl;
-  cout<<pixels[1].red << endl;
-  cout<<pixels[2].red << endl;
-  cout<<pixels[3].red << endl;
 }
 
-void Stacker::totalInit(int vecSize){ //this initializes the pixels vector, we need the size from the fileRead vector so it has the correct number of entries
+void Stacker::totalInit(int vecSize){
   pixel pTotal;
   //This loop initializes pixels by pushing pixel structs filled with zeros into it.
   //The point of this is to have an initialized entry for every index that the fileRead vector has. 
@@ -124,22 +110,20 @@ void Stacker::totalInit(int vecSize){ //this initializes the pixels vector, we n
 }
 
 void Stacker::fileWrite(string folderName){
-  //This code will set the name of the file we are writing to 
+  //This code will set the name of the file we are writing to.
   string fileName = folderName + ".ppm"; 
   ofstream out;
-  //This opens our file stream
+
+  //This opens our file stream.
   out.open(fileName.c_str()); 
   out << magic_number << '\n' << height << ' ' << width << '\n' << max_color << endl;
-  //while(out){
-  /** for(int i = 0; i < height*width; i++){
-    for(int j = 0; j < height; j++){ //we need to get it to print until the width ends and then start a new line
-      out << pixels[i].red << ' ' << pixels[i].green << ' ' << pixels[i].blue << ' ';
-    }
-    out << endl; 
-    }**/
+
+  //This code writes the pixels structs to the new ppm file.
   for(int i = 0; i < pixels.size(); i++){
     out << pixels[i].red << ' ' << pixels[i].green << ' ' << pixels[i].blue << ' ';
   }
+
+  //This closes the file stream.
   out.close();
   cout << "Output written to: " << fileName << endl; 
 }
