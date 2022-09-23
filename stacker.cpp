@@ -75,6 +75,7 @@ void Stacker::fileLoader(string folderName, int numberOfImages){
   cout << pVec[1].red << endl;
   cout << pVec[2].red << endl;
   cout << pVec[3].red << endl;
+
 }
 
 void Stacker::total(vector<pixel> pVec){
@@ -96,7 +97,8 @@ void Stacker::total(vector<pixel> pVec){
 void Stacker::average(int numberOfImages){
   //This averages all of the entries in the pixels vector. The totals of
   //the numbers read in from the ppm file are divided by the number of ppm
-  //files that were read. 
+  //files that were read.
+  // pixels.shrink_to_fit(); 
   for(unsigned int i = 0; i <= pixels.size(); i++){
     pixels[i].red = pixels[i].red/numberOfImages;
     pixels[i].green = pixels[i].green/numberOfImages;
@@ -127,7 +129,7 @@ void Stacker::fileWrite(string folderName){
   ofstream out;
   //This opens our file stream
   out.open(fileName.c_str()); 
-  out << magic_number << '\n' << width << ' ' << height << '\n' << max_color << endl;
+  out << magic_number << '\n' << height << ' ' << width << '\n' << max_color << endl;
   //while(out){
   /** for(int i = 0; i < height*width; i++){
     for(int j = 0; j < height; j++){ //we need to get it to print until the width ends and then start a new line

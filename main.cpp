@@ -21,15 +21,16 @@ int main() {
   string folderName;
   int numberOfImages;
 
-  //The program asks the user for the name of the image and the number of images. 
+  //The code asks the user for the name of the image and the number of images. 
   cout << "Please enter the image you wish to stack: ";
   cin >> folderName;
   cout << "Please enter the number of images: ";
   cin >> numberOfImages;
+  
   //This count variable will be used for looping the fileLoader method.
   int count = numberOfImages; 
-
-  cout << "Stacking Images: " << endl; 
+  cout << "Stacking Images: " << endl;
+  
   //This loop is to call the fileLoader method on the user specified ppms. 
   while(count > 0){ //NOTE: There is currently no catch for if an image doesnt exist, the program crashes
     s.fileLoader(folderName, count);
@@ -37,10 +38,11 @@ int main() {
   }
   cout << endl << "Stacking succeeded." << endl; 
   
-  //averages the values in the total vector
-  cout << "The Average of the first 4 reds is" << endl; //remove this later 
+  //This calls the average method and averages the values in the pixel vector. 
+  cout << "The Average of the first 4 reds is" << endl; //remove this later DEBUG STUFF
   s.average(numberOfImages);
 
+  //This calls the file writer method to create the new image. 
   s.fileWrite(folderName); 
   
 
