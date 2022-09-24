@@ -29,11 +29,11 @@ int main() {
   cout << "Stacking Images: " << endl;
   
   //This loop is to call the fileLoader method on the user specified ppms. 
-  while(count > 0){ //NOTE: There is currently no catch for if an image doesnt exist, the program crashes
+  while(count > 0){
     s.fileLoader(folderName, count);
     count--;
   }
-  cout << endl << "Stacking succeeded." << endl; 
+  cout << "Stacking succeeded." << endl; 
   
   //This calls the average method and averages the values in the pixel vector. 
   s.average(numberOfImages);
