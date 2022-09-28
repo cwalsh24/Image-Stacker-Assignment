@@ -27,6 +27,14 @@ class Stacker{
   int width;
   int height;
   int max_color;
+
+/**
+ * This struct stores the red, green, and blue values from the ppm file 
+ *
+ * @struct pixel{ stacker.h "imgStack/stacker.h"
+ * @brief stores RGB values
+ *
+ */
   struct pixel{
     int red;
     int green;
