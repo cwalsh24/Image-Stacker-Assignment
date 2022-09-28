@@ -31,7 +31,7 @@ class Stacker{
 /**
  * This struct stores the red, green, and blue values from the ppm file 
  *
- * @struct pixel{ stacker.h "imgStack/stacker.h"
+ * @struct pixel{ stacker.h "Image-Stacker-Assignment/stacker.h"
  * @brief stores RGB values
  *
  */
